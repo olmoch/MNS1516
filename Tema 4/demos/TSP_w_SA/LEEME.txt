@@ -1,0 +1,2 @@
+
+El fichero "ts3demo.exe" se ejecuta desde el prompt de DOS.

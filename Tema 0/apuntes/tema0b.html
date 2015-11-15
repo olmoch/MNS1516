@@ -1,0 +1,684 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Tema 0b - Graficos y ficheros</title><meta name="generator" content="MATLAB 8.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2015-07-23"><meta name="DC.source" content="tema0b.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, tt, code { font-size:12px; }
+pre { margin:0px 0px 20px; }
+pre.error { color:red; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Tema 0b - Graficos y ficheros</h1><!--introduction--><p>METODOS NUMERICOS Y DE SIMULACION - Curso 2015-2015. Segundo curso del Grado en Fisica. Universidad de Sevilla.</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#2">Lectura y escritura interactiva de variables</a></li><li><a href="#4">Lectura y escritura de variables en ficheros binarios</a></li><li><a href="#6">Lectura y escritura en ficheros de texto</a></li><li><a href="#8">APERTURA, ESCRITURA Y CIERRE DE FICHEROS</a></li><li><a href="#10">Lectura de datos en texto mediante textscan</a></li><li><a href="#12">Escritura de datos con formato mediante fprintf</a></li><li><a href="#14">Graficos 2D. Funcion plot</a></li><li><a href="#16">Graficos de curvas 3D</a></li><li><a href="#18">Graficos de superficies z = f(x,y). Funcion MESHGRID.</a></li><li><a href="#20">Funciones surf y mesh</a></li><li><a href="#22">TRABAJO PARA CASA</a></li></ul></div><p><img vspace="5" hspace="5" src="blanco.png" alt=""> </p><h2>Lectura y escritura interactiva de variables<a name="2"></a></h2><p>La funcion input retorna el valor de una variable desde el teclado, permitiendo imprimir un mensaje. La funcion disp imprime variables en un formato sencillo.</p><pre class="codeinput">clc;
+<span class="comment">% s = input('Como te llamas? ','s') % CUIDADO: NO FUNCIONA EN PUBLISH2HTML</span>
+<span class="comment">% n = input('Teclea la dimension de la matriz: ')</span>
+<span class="comment">% M = rand(n)</span>
+<span class="comment">% disp('Escrimos la matriz en pantalla tal cual')</span>
+<span class="comment">% M</span>
+<span class="comment">% disp('Y ahora con ''disp'''), disp(M)</span>
+</pre><p><img vspace="5" hspace="5" src="blanco.png" alt=""> </p><h2>Lectura y escritura de variables en ficheros binarios<a name="4"></a></h2><p>Una lectura y escritura directa de variables en ficheros se realiza con los comandos save y load. Ambos comandos son capaces de trabajar con formatos de texto o binario. Estos comandos nos evitan tener que abrir y cerrar fichero formalmente. Por otra parte, permiten muy poco control sobre el formato en el que se escriben los datos.</p><pre class="codeinput">clear;
+A = rand(20,2); B = rand(10,3);
+save <span class="comment">% guarda todas las variables en un fichero denominado matlab.mat</span>
+disp(<span class="string">'Primer whos'</span>),  whos
+clear <span class="string">all</span>;
+disp(<span class="string">'Segundo whos'</span>), whos
+
+<span class="comment">%input('Preparado para recuperar variables? ')</span>
+load <span class="comment">% recupera todas las variables de fichero matlab.mat</span>
+disp(<span class="string">'Tercer whos'</span>), whos
+</pre><pre class="codeoutput">
+Saving to: /home/carlos/2015-2016/docencia/mns/tema0/matlab.mat
+
+Primer whos
+  Name       Size            Bytes  Class     Attributes
+
+  A         20x2               320  double              
+  B         10x3               240  double              
+
+Segundo whos
+
+Loading from: matlab.mat
+
+Tercer whos
+  Name       Size            Bytes  Class     Attributes
+
+  A         20x2               320  double              
+  B         10x3               240  double              
+
+</pre><p><img vspace="5" hspace="5" src="blanco.png" alt=""> </p><h2>Lectura y escritura en ficheros de texto<a name="6"></a></h2><pre class="codeinput">clear;
+A = rand(20,2); B = rand(10,3);
+save <span class="string">ftexto1.txt</span> <span class="string">-ASCII</span>
+save <span class="string">ftexto2.txt</span> <span class="string">A</span> <span class="string">-ASCII</span>
+clear <span class="string">A</span> <span class="string">B</span>;
+load <span class="string">ftexto2.txt</span>
+ftexto2
+A = load(<span class="string">'ftexto2.txt'</span>)
+</pre><pre class="codeoutput">
+ftexto2 =
+
+    0.0263    0.8063
+    0.3188    0.2222
+    0.5330    0.9998
+    0.3268    0.0637
+    0.6022    0.4255
+    0.3619    0.4043
+    0.1349    0.4003
+    0.9138    0.1119
+    0.6406    0.4243
+    0.6588    0.6135
+    0.6753    0.9881
+    0.7446    0.2199
+    0.8422    0.3541
+    0.5167    0.2662
+    0.1519    0.2915
+    0.3807    0.1884
+    0.8210    0.0229
+    0.1714    0.4494
+    0.3300    0.2436
+    0.9665    0.8687
+
+
+A =
+
+    0.0263    0.8063
+    0.3188    0.2222
+    0.5330    0.9998
+    0.3268    0.0637
+    0.6022    0.4255
+    0.3619    0.4043
+    0.1349    0.4003
+    0.9138    0.1119
+    0.6406    0.4243
+    0.6588    0.6135
+    0.6753    0.9881
+    0.7446    0.2199
+    0.8422    0.3541
+    0.5167    0.2662
+    0.1519    0.2915
+    0.3807    0.1884
+    0.8210    0.0229
+    0.1714    0.4494
+    0.3300    0.2436
+    0.9665    0.8687
+
+</pre><p><img vspace="5" hspace="5" src="blanco.png" alt=""> </p><h2>APERTURA, ESCRITURA Y CIERRE DE FICHEROS<a name="8"></a></h2><p>La apertura y cierre de ficheros se realiza con las funciones fopen y fclose respetivamente.</p><p>[fi, texto] = fopen('filename','c')</p><p>st = flose(fi)</p><pre class="codeinput">dir <span class="string">*.txt</span>     <span class="comment">% lista ficheros</span>
+[fi, texto] = fopen(<span class="string">'fprueba.txt'</span>,<span class="string">'w'</span>)
+st = fclose(fi)
+dir <span class="string">*.txt</span>
+</pre><pre class="codeoutput">
+fprueba.txt   ftexto2.txt   prueba.txt    
+ftexto1.txt   misdatos.txt  
+
+
+fi =
+
+     3
+
+
+texto =
+
+     ''
+
+
+
+st =
+
+     0
+
+
+fprueba.txt   ftexto2.txt   prueba.txt    
+ftexto1.txt   misdatos.txt  
+
+</pre><p><img vspace="5" hspace="5" src="blanco.png" alt=""> </p><h2>Lectura de datos en texto mediante textscan<a name="10"></a></h2><p>La funcion textscan esta pensada para leer ficheros de datos en columnas indicando el formato. Lo mostramos con un ejemplo sobre el fichero misdatos.txt (tomado de la ayuda de Matlab) que contiene los siguientes datos</p><pre>              Sally    Type1 12.34 45 1.23e10 inf NaN Yes
+              Joe      Type2 23.54 60 9e19 -inf 0.001 No
+              Bill     Type3 34.90 12 2e5 10 100 No</pre><p>La funcion textscan devuelve un array de celdas cada una de las cuales es una columna del fichero. En cuanto a las cadenas de formato: %s indica una cadena de caracteres, %d un entero, %f un numero de coma flotante, etc (conviene consultar la ayuda de <b>textscan</b>).</p><pre class="codeinput">fi = fopen(<span class="string">'misdatos.txt'</span>,<span class="string">'r'</span>);
+C = textscan(fi, <span class="string">'%s%s%f32%d8%u%f%f%s'</span>,<span class="string">'CommentStyle'</span>,<span class="string">'%'</span>);
+fclose(fi);
+C{1},C{2},C{3}
+x = C{3};
+whos <span class="string">x</span>
+</pre><pre class="codeoutput">
+ans = 
+
+    'Sally'
+    'Joe'
+    'Bill'
+
+
+ans = 
+
+    'Type1'
+    'Type2'
+    'Type3'
+
+
+ans =
+
+   12.3400
+   23.5400
+   34.9000
+
+  Name      Size            Bytes  Class     Attributes
+
+  x         3x1                12  single              
+
+</pre><p><img vspace="5" hspace="5" src="blanco.png" alt=""> </p><h2>Escritura de datos con formato mediante fprintf<a name="12"></a></h2><p>La funcion mas habitual para escribir datos con formato es fprintf.</p><p>fprintf(fi, 'cadena de control', var1, var2, ...)</p><pre class="codeinput">clc;
+fi = fopen(<span class="string">'prueba.txt'</span>,<span class="string">'w'</span>);
+x = 1:2:10;
+y = x + 1;
+<span class="keyword">for</span> i=1:length(x)
+    fprintf(fi, <span class="string">'%d %5.3f\n'</span>, x(i), y(i));
+<span class="keyword">end</span>
+<span class="comment">% version sin bucles (mas bien confusa...)</span>
+<span class="comment">%fprintf(fi, '%d %5.3f\n', [x; y] );</span>
+
+fclose(fi);
+type <span class="string">'prueba.txt'</span>
+</pre><pre class="codeoutput">
+1 2.000
+3 4.000
+5 6.000
+7 8.000
+9 10.000
+
+</pre><p><img vspace="5" hspace="5" src="blanco.png" alt=""> </p><h2>Graficos 2D. Funcion plot<a name="14"></a></h2><p>La funcion plot es la funcion basica para dibujar graficos bidimensionales. Dibuja los valores de un vector frente a otro en un grafico bidimensional. Admite varios pares de vectores y especificaciones de estilo de linea, entre otras mucha opciones.</p><pre class="codeinput">x = 0:pi/50:2*pi;
+y = sin(x) + 0.1*rand(size(x));
+y2 = cos(x);
+
+figure(<span class="string">'Name'</span>,<span class="string">'Ejemplo plot 1'</span>); <span class="comment">% abre una nueva ventana de graficos</span>
+plot(x,y,<span class="string">'-b'</span>)
+hold <span class="string">on</span>;
+plot(x,y2,<span class="string">'ob'</span>);
+xlabel(<span class="string">'x'</span>);
+ylabel(<span class="string">'y'</span>)
+hold <span class="string">off</span>;
+title( get( gcf, <span class="string">'Name'</span> ));
+legend(<span class="string">'y'</span>,<span class="string">'y2'</span>);
+
+figure(<span class="string">'Name'</span>,<span class="string">'Ejemplo plot 2'</span>);
+plot(x,y,<span class="string">'-r'</span>,x,y2,<span class="string">'-b'</span>);
+title(<span class="string">'plot(x,y,''-r'',x,y2,''-b'')'</span>)
+legend(<span class="string">'y'</span>,<span class="string">'y2'</span>);
+xlabel(<span class="string">'eje X'</span>);
+ylabel(<span class="string">'eje Y'</span>);
+
+<span class="comment">% Variaciones de esta funcion son plotyy, loglog, semlogx, etc. Una peque&ntilde;a</span>
+<span class="comment">% galeria puede encontrarse en</span>
+<span class="comment">%</span>
+<span class="comment">% http://es.mathworks.com/discovery/gallery.html</span>
+<span class="comment">%</span>
+<span class="comment">% o bien en la seccion demos de la ayuda de Matlab. Normalmente, existe una</span>
+<span class="comment">% funcion Matlab ya creada para la mayoria de las necesidades habituales y</span>
+<span class="comment">% no tan habituales.</span>
+<span class="comment">%</span>
+figure(<span class="string">'Name'</span>,<span class="string">'Ejemplo polar plot'</span>);
+<span class="comment">% ejemplo tomado de la ayuda de Matlab</span>
+t = 0:.01:2*pi;
+polar(t,sin(2*t).*cos(2*t),<span class="string">'--r'</span>);
+title( get( gcf, <span class="string">'Name'</span> ));
+
+<span class="comment">% Otros comandos relacionados con la creacion de figuras son los</span>
+<span class="comment">% siguientes:</span>
+<span class="comment">%</span>
+<span class="comment">% - figure: crea una nueva ventana grafica.</span>
+<span class="comment">% - figure(n): hace que la ventana n pase a ser la activa.</span>
+<span class="comment">% - clf: borra el contenido de la ventana activa.</span>
+<span class="comment">% - gcf: devuelve el numero de la ventana activa en ese momento</span>
+<span class="comment">% - close: cierra la figura activa.</span>
+<span class="comment">% - close(n): cierra la figura n-esima.</span>
+<span class="comment">% - hold on: mantiene el grafico disponible para dibujar nuevas curvas</span>
+<span class="comment">% sobre el.</span>
+<span class="comment">% - hold off: anula a hold on.</span>
+</pre><img vspace="5" hspace="5" src="tema0b_01.png" alt=""> <img vspace="5" hspace="5" src="tema0b_02.png" alt=""> <img vspace="5" hspace="5" src="tema0b_03.png" alt=""> <p><img vspace="5" hspace="5" src="blanco.png" alt=""> </p><h2>Graficos de curvas 3D<a name="16"></a></h2><p>La funcion plot3 es analoga a la funcion plot</p><pre class="codeinput">figure(<span class="string">'Name'</span>,<span class="string">'Ejemplo polar plot'</span>);
+
+<span class="comment">% ecuaciones parametricas de una helice</span>
+t = linspace( 0, 6*pi, 100);
+x = sin(t);
+y = cos(t);
+z = t;
+
+plot3( x, y , z, <span class="string">'-'</span>);
+xlabel(<span class="string">'x'</span>);
+ylabel(<span class="string">'y'</span>);
+zlabel(<span class="string">'z'</span>);
+title( get( gcf, <span class="string">'Name'</span> ));
+</pre><img vspace="5" hspace="5" src="tema0b_04.png" alt=""> <p><img vspace="5" hspace="5" src="blanco.png" alt=""> </p><h2>Graficos de superficies z = f(x,y). Funcion MESHGRID.<a name="18"></a></h2><p>Para dibujar una superficie dada por z = f(x,y) necesitamos conocer los valores de z sobre un mallado bidimensional x, y. Esto se hace de la siguiente manera:</p><p>- se genera una matriz X con las coordenadas x de una matriz de puntos del dominio - idem con Y - se halla f(X,Y)</p><p>Las matrices X, Y son generadas a partir de vectores monodimensionales por medio de la funcion meshgrid.</p><pre class="codeinput">x = 1:5;
+y = -1:-1:-4; <span class="comment">% los ponemos de distinto signo para que se distingan</span>
+[X,Y] = meshgrid( 1:5, -1:-1:-4);
+
+figure(<span class="string">'Name'</span>,<span class="string">'Ejemplo funcion meshgrid'</span>);
+plot(X,Y,<span class="string">'xr'</span>);
+xlabel(<span class="string">'x'</span>);
+ylabel(<span class="string">'y'</span>);
+title( get( gcf, <span class="string">'Name'</span> ));
+hold <span class="string">on</span>;
+
+<span class="comment">% imprimimos los pares de valores sobre un grafico para que quede mas claro</span>
+<span class="keyword">for</span> ii = 1:length(x)
+    <span class="keyword">for</span> jj = 1:length(y)
+        text(x(ii),y(jj), sprintf(<span class="string">'(%d, %d) '</span>,x(ii),y(jj) ) )
+    <span class="keyword">end</span>
+    fprintf(<span class="string">'\n'</span>);
+<span class="keyword">end</span>
+</pre><pre class="codeoutput">
+
+
+
+
+</pre><img vspace="5" hspace="5" src="tema0b_05.png" alt=""> <p><img vspace="5" hspace="5" src="blanco.png" alt=""> </p><h2>Funciones surf y mesh<a name="20"></a></h2><pre class="codeinput">x = -8:0.5:8;
+y = x;
+[X, Y] = meshgrid( x, y);
+R = sqrt( X.^2 + Y.^2) + eps;
+W = sin(R) ./ R;
+
+figure(<span class="string">'Name'</span>,<span class="string">'Ejemplo mesh'</span>);
+mesh(X,Y,W);
+xlabel(<span class="string">'x'</span>);
+ylabel(<span class="string">'y'</span>);
+zlabel(<span class="string">'z'</span>);
+title( get( gcf, <span class="string">'Name'</span> ));
+
+figure(<span class="string">'Name'</span>,<span class="string">'Ejemplo surf'</span>);
+surf(X,Y,W);
+xlabel(<span class="string">'x'</span>);
+ylabel(<span class="string">'y'</span>);
+zlabel(<span class="string">'z'</span>);
+title( get( gcf, <span class="string">'Name'</span> ));
+
+figure(<span class="string">'Name'</span>,<span class="string">'Ejemplo contour'</span>);
+[cs, h] = contour(X,Y,W);
+<span class="comment">%clabel( cs, h); % pone rotulos a las lineas de nivel</span>
+xlabel(<span class="string">'x'</span>);
+ylabel(<span class="string">'y'</span>);
+title( get( gcf, <span class="string">'Name'</span> ));
+</pre><img vspace="5" hspace="5" src="tema0b_06.png" alt=""> <img vspace="5" hspace="5" src="tema0b_07.png" alt=""> <img vspace="5" hspace="5" src="tema0b_08.png" alt=""> <p><img vspace="5" hspace="5" src="blanco.png" alt=""> </p><h2>TRABAJO PARA CASA<a name="22"></a></h2><p>- Repasar los ejemplos que aparecen en este fichero, haciendo variaciones sobre ellos. Tambien conviene consultar la ayuda de Matlab de las funciones que hemos utilizado, mediante el comando</p><p>help nombrefuncion</p><p>- De nuevo, leer los apartados correspondientes de los apuntes "Aprenda Matlab como si estuviera en primero".</p><pre>     * los arrays de celdas se tratan en el apartado 5.4
+     * la entrada y salida de datos se trata en los apartado 6.5 y 6.6,
+       junto con algunos comentarios respecto a las cadenas de
+       caracteres. No trata la funcion textscan sino su predecesora
+       textread, que ya no se recomienda (consultar help textread).
+     * Los capitulos 8 y 9 tratan los temas de graficos. Esta bien
+     echarles un vistazo sin entrar en los apartados mas complicados
+     (a partir del apartado 9.2.1).</pre><p>Tambi&eacute;n conviene echar un vistazo al apartado 2.5.7 acerca del <i>debugger</i>.</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Tema 0b - Graficos y ficheros
+% METODOS NUMERICOS Y DE SIMULACION - Curso 2015-2015. 
+% Segundo curso del Grado en Fisica. Universidad de Sevilla.
+
+%%
+% 
+% <<blanco.png>>
+%
+
+%% Lectura y escritura interactiva de variables
+%
+% La funcion input retorna el valor de una variable desde el teclado,
+% permitiendo imprimir un mensaje. La funcion disp imprime variables en un
+% formato sencillo.
+%
+clc;
+% s = input('Como te llamas? ','s') % CUIDADO: NO FUNCIONA EN PUBLISH2HTML
+% n = input('Teclea la dimension de la matriz: ')
+% M = rand(n)
+% disp('Escrimos la matriz en pantalla tal cual')
+% M
+% disp('Y ahora con ''disp'''), disp(M)
+
+
+%%
+% 
+% <<blanco.png>>
+%
+
+
+%% Lectura y escritura de variables en ficheros binarios
+%
+% Una lectura y escritura directa de variables en ficheros se realiza con
+% los comandos save y load. Ambos comandos son capaces de trabajar con
+% formatos de texto o binario. Estos comandos nos evitan tener que abrir y
+% cerrar fichero formalmente. Por otra parte, permiten muy poco control
+% sobre el formato en el que se escriben los datos.
+%
+
+clear;
+A = rand(20,2); B = rand(10,3);
+save % guarda todas las variables en un fichero denominado matlab.mat
+disp('Primer whos'),  whos
+clear all;
+disp('Segundo whos'), whos
+
+%input('Preparado para recuperar variables? ')
+load % recupera todas las variables de fichero matlab.mat
+disp('Tercer whos'), whos
+
+%%
+% 
+% <<blanco.png>>
+%
+
+
+%% Lectura y escritura en ficheros de texto
+
+clear;
+A = rand(20,2); B = rand(10,3);
+save ftexto1.txt -ASCII
+save ftexto2.txt A -ASCII
+clear A B;
+load ftexto2.txt
+ftexto2
+A = load('ftexto2.txt')
+
+%%
+% 
+% <<blanco.png>>
+%
+
+
+%%  APERTURA, ESCRITURA Y CIERRE DE FICHEROS
+%
+% La apertura y cierre de ficheros se realiza con las funciones fopen y
+% fclose respetivamente.
+%
+% [fi, texto] = fopen('filename','c')
+%
+% st = flose(fi)
+%
+
+dir *.txt     % lista ficheros
+[fi, texto] = fopen('fprueba.txt','w')
+st = fclose(fi)
+dir *.txt
+
+%%
+% 
+% <<blanco.png>>
+%
+
+%% Lectura de datos en texto mediante textscan
+%
+% La funcion textscan esta pensada para leer ficheros de datos en columnas
+% indicando el formato. Lo mostramos con un ejemplo sobre el fichero
+% misdatos.txt (tomado de la ayuda de Matlab) que contiene los siguientes
+% datos
+%
+%                Sally    Type1 12.34 45 1.23e10 inf NaN Yes
+%                Joe      Type2 23.54 60 9e19 -inf 0.001 No
+%                Bill     Type3 34.90 12 2e5 10 100 No
+%
+% La funcion textscan devuelve un array de celdas cada una de las cuales es
+% una columna del fichero. En cuanto a las cadenas de formato: %s indica
+% una cadena de caracteres, %d un entero, %f un numero de coma flotante,
+% etc (conviene consultar la ayuda de *textscan*).
+
+fi = fopen('misdatos.txt','r');
+C = textscan(fi, '%s%s%f32%d8%u%f%f%s','CommentStyle','%');
+fclose(fi); 
+C{1},C{2},C{3}
+x = C{3};
+whos x
+
+%%
+% 
+% <<blanco.png>>
+%
+
+%% Escritura de datos con formato mediante fprintf
+%
+% La funcion mas habitual para escribir datos con formato es fprintf. 
+%
+% fprintf(fi, 'cadena de control', var1, var2, ...)
+%
+clc;
+fi = fopen('prueba.txt','w');
+x = 1:2:10; 
+y = x + 1;
+for i=1:length(x)
+    fprintf(fi, '%d %5.3f\n', x(i), y(i));
+end
+% version sin bucles (mas bien confusa...)
+%fprintf(fi, '%d %5.3f\n', [x; y] );
+
+fclose(fi);
+type 'prueba.txt'
+
+%%
+% 
+% <<blanco.png>>
+%
+
+%% Graficos 2D. Funcion plot
+%
+% La funcion plot es la funcion basica para dibujar graficos
+% bidimensionales. Dibuja los valores de un vector frente a otro en un
+% grafico bidimensional. Admite varios pares de vectores y especificaciones
+% de estilo de linea, entre otras mucha opciones.
+
+x = 0:pi/50:2*pi; 
+y = sin(x) + 0.1*rand(size(x));
+y2 = cos(x);
+
+figure('Name','Ejemplo plot 1'); % abre una nueva ventana de graficos
+plot(x,y,'-b')
+hold on;
+plot(x,y2,'ob');
+xlabel('x');
+ylabel('y')
+hold off;
+title( get( gcf, 'Name' ));
+legend('y','y2');
+
+figure('Name','Ejemplo plot 2'); 
+plot(x,y,'-r',x,y2,'-b');
+title('plot(x,y,''-r'',x,y2,''-b'')')
+legend('y','y2');
+xlabel('eje X'); 
+ylabel('eje Y');
+
+% Variaciones de esta funcion son plotyy, loglog, semlogx, etc. Una pequeña
+% galeria puede encontrarse en
+%
+% http://es.mathworks.com/discovery/gallery.html
+% 
+% o bien en la seccion demos de la ayuda de Matlab. Normalmente, existe una
+% funcion Matlab ya creada para la mayoria de las necesidades habituales y
+% no tan habituales.
+%
+figure('Name','Ejemplo polar plot');
+% ejemplo tomado de la ayuda de Matlab
+t = 0:.01:2*pi;
+polar(t,sin(2*t).*cos(2*t),'REPLACE_WITH_DASH_DASHr');
+title( get( gcf, 'Name' ));
+
+% Otros comandos relacionados con la creacion de figuras son los
+% siguientes:
+%
+% - figure: crea una nueva ventana grafica.
+% - figure(n): hace que la ventana n pase a ser la activa.
+% - clf: borra el contenido de la ventana activa.
+% - gcf: devuelve el numero de la ventana activa en ese momento
+% - close: cierra la figura activa.
+% - close(n): cierra la figura n-esima.
+% - hold on: mantiene el grafico disponible para dibujar nuevas curvas
+% sobre el.
+% - hold off: anula a hold on.
+
+%%
+% 
+% <<blanco.png>>
+%
+
+%% Graficos de curvas 3D
+%
+% La funcion plot3 es analoga a la funcion plot
+%
+figure('Name','Ejemplo polar plot');
+
+% ecuaciones parametricas de una helice
+t = linspace( 0, 6*pi, 100); 
+x = sin(t); 
+y = cos(t); 
+z = t; 
+
+plot3( x, y , z, '-');
+xlabel('x');
+ylabel('y');
+zlabel('z');
+title( get( gcf, 'Name' ));
+
+%%
+% 
+% <<blanco.png>>
+%
+
+%% Graficos de superficies z = f(x,y). Funcion MESHGRID.
+%
+% Para dibujar una superficie dada por z = f(x,y) necesitamos conocer los
+% valores de z sobre un mallado bidimensional x, y. Esto se hace de la
+% siguiente manera:
+% 
+% - se genera una matriz X con las coordenadas x de una matriz de puntos
+% del dominio
+% - idem con Y
+% - se halla f(X,Y)
+%
+% Las matrices X, Y son generadas a partir de vectores monodimensionales
+% por medio de la funcion meshgrid.
+%
+x = 1:5; 
+y = -1:-1:-4; % los ponemos de distinto signo para que se distingan
+[X,Y] = meshgrid( 1:5, -1:-1:-4);
+
+figure('Name','Ejemplo funcion meshgrid');
+plot(X,Y,'xr');
+xlabel('x');
+ylabel('y');
+title( get( gcf, 'Name' ));
+hold on;
+
+% imprimimos los pares de valores sobre un grafico para que quede mas claro
+for ii = 1:length(x)
+    for jj = 1:length(y)
+        text(x(ii),y(jj), sprintf('(%d, %d) ',x(ii),y(jj) ) )
+    end
+    fprintf('\n');
+end
+
+%%
+% 
+% <<blanco.png>>
+%
+
+%% Funciones surf y mesh
+
+x = -8:0.5:8; 
+y = x;
+[X, Y] = meshgrid( x, y);
+R = sqrt( X.^2 + Y.^2) + eps;
+W = sin(R) ./ R;
+
+figure('Name','Ejemplo mesh');
+mesh(X,Y,W);
+xlabel('x');
+ylabel('y');
+zlabel('z');
+title( get( gcf, 'Name' ));
+
+figure('Name','Ejemplo surf');
+surf(X,Y,W);
+xlabel('x');
+ylabel('y');
+zlabel('z');
+title( get( gcf, 'Name' ));
+
+figure('Name','Ejemplo contour');
+[cs, h] = contour(X,Y,W);
+%clabel( cs, h); % pone rotulos a las lineas de nivel
+xlabel('x');
+ylabel('y');
+title( get( gcf, 'Name' ));
+
+%%
+% 
+% <<blanco.png>>
+%
+
+%% TRABAJO PARA CASA
+%
+% - Repasar los ejemplos que aparecen en este fichero, haciendo variaciones
+% sobre ellos. Tambien conviene consultar la ayuda de Matlab de las
+% funciones que hemos utilizado, mediante el comando 
+%
+% help nombrefuncion
+%
+% - De nuevo, leer los apartados correspondientes de los apuntes "Aprenda
+% Matlab como si estuviera en primero". 
+%
+%       * los arrays de celdas se tratan en el apartado 5.4 
+%       * la entrada y salida de datos se trata en los apartado 6.5 y 6.6, 
+%         junto con algunos comentarios respecto a las cadenas de 
+%         caracteres. No trata la funcion textscan sino su predecesora
+%         textread, que ya no se recomienda (consultar help textread).
+%       * Los capitulos 8 y 9 tratan los temas de graficos. Esta bien
+%       echarles un vistazo sin entrar en los apartados mas complicados
+%       (a partir del apartado 9.2.1).
+%
+% También conviene echar un vistazo al apartado 2.5.7 acerca del
+% _debugger_.
+
+##### SOURCE END #####
+--></body></html>

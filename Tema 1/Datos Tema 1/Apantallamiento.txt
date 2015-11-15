@@ -1,0 +1,27 @@
+Datos del factor de apantallamiento magnético
+dentro de un cilindro de cobre tomados de una práctica de TEE.
+f es la frecuencia del campo en Hz
+nu es el factor de apantallamiento, que no tiene unidades
+f	1/(1-nu)^2
+125	2.641
+225	6.299
+325	11.907
+425	19.918
+525	29.675
+625	42.002
+725	55.637
+825	72.855
+925	89.323
+1025	111.574
+1525	243.394
+2025	441.696
+2525	703.723
+3025	1007.914
+3525	1406.958
+4025	1888.905
+4525	2480.431
+5025	3169.690
+5525	3884.185
+6025	4856.797
+6525	5969.596
+7025	7252.445

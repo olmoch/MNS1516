@@ -1,0 +1,411 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      -->
+ 
+<title>Código de los ejercicios de la Práctica 5</title>
+<meta name="generator" content="MATLAB 8.1">
+<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/">
+<meta name="DC.date" content="2015-05-15">
+<meta name="DC.source" content="EjerciciosPractica5.m">
+<style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, tt, code { font-size:12px; }
+pre { margin:0px 0px 20px; }
+pre.error { color:red; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+</style>
+
+</head>
+
+<body>
+  
+<div class="content">
+
+  <h1>Ejercicios de la Pr&aacute;ctica 5: Integraci&oacute;n num&eacute;rica</h1>
+
+  <h2>Contents</h2>
+
+<div>
+  <ul>
+    <li><a href="#1">Ejercicio 5.1</a></li>
+    <li><a href="#2">Ejercicio 5.2</a></li>
+    <li><a href="#4">Ejercicio 5.3</a></li>
+    <li><a href="#5">Ejercicio 5.4</a></li>
+  </ul>
+</div>
+
+<h2>Ejercicio 5.1<a name="1"></a></h2>
+
+<pre class="codeinput">
+<span class="comment">% Funcion integrando</span>
+fi = @(x) atan(x+4);
+<span class="comment">% Primitiva</span>
+ff = @(x) -log(x.^2+8*x+17)*0.5 + (x+4).*atan(x+4);
+<span class="comment">% Intervalo de integracion</span>
+a = -10;
+b = 5;
+
+<span class="comment">% Valor exacto</span>
+qexacto = ff(5)-ff(-10);
+
+<span class="comment">% Aproximacion numerica</span>
+qaprox = integral( fi, -10, 5);
+
+fprintf(<span class="string">'\n\n'</span>)
+fprintf(<span class="string">' Valor exacto (Formula de Barrow): %22.16f \n'</span>, qexacto)
+fprintf(<span class="string">' Valor aproximado (numericamente): %22.16f \n'</span>, qaprox)
+</pre>
+
+<pre class="codeoutput">
+ Valor exacto (Formula de Barrow):     4.3094653869973749 
+ Valor aproximado (numericamente):     4.3094653869969157 
+</pre>
+
+
+<h2>Ejercicio 5.2<a name="2"></a></h2>
+<pre class="codeinput">
+<span class="keyword">function</span> Ejercicio5_2
+<span class="comment">%</span>
+<span class="comment">%  Dibuja la grafica de la funcion</span>
+<span class="comment">%    k ---&gt; \int_{0.5}^{7} x \sin( 4 \ln(kx) )</span>
+<span class="comment">%  para k \in [1, 10]</span>
+<span class="comment">%</span>
+k = linspace(1,10);
+vk = zeros(1,100);
+<span class="keyword">for</span> i = 1:100
+  vk(i) = intfunk(k(i));
+<span class="keyword">end</span>
+plot(k, vk, <span class="string">'r'</span>, <span class="string">'LineWidth'</span>, 1.1)
+
+
+<span class="comment">% Funciones auxiliares</span>
+
+<span class="comment">%</span>
+<span class="keyword">function</span> [y] = intfunk(k)
+<span class="comment">%</span>
+<span class="comment">%  y = \int_{0.5}^7 funk(x,k) dx</span>
+<span class="comment">%</span>
+y = integral( @(x) funk(x,k), 0.5, 7);
+
+
+<span class="keyword">function</span> [y] = funk(x,k)
+<span class="comment">%</span>
+<span class="comment">%  y = x * sin( 4 * log(k*x) )</span>
+<span class="comment">%</span>
+y = x .* sin( 4 * log(k*x) );
+</pre>
+
+<img vspace="5" hspace="5" src="Ejercicio5_2.png" alt=""> 
+
+  
+<h2>Ejercicio 5.3<a name="4"></a></h2>
+<pre class="codeinput">
+<span class="comment">% Funcion integrando</span>
+fi = @(x) atan(x+4);
+<span class="comment">% Funcion primitiva</span>
+ff = @(x) -log(x.^2+8*x+17)*0.5 + (x+4).*atan(x+4);
+<span class="comment">% Intervalo de integracion</span>
+a = -10;
+b = 5;
+
+<span class="comment">% Valor exacto</span>
+qexacto = ff(5)-ff(-10);
+
+<span class="comment">% Aproximacion numerica con integral</span>
+qaprox = integral( fi, -10, 5);
+
+<span class="comment">% Aproximacion con la formula de los trapecios con 5 puntos</span>
+x = linspace(a,b,5);
+y = fi(x);
+qtrap5 = trapz(x,y);
+
+<span class="comment">% Aproximacion con la formula de los trapecios con 15 puntos</span>
+x = linspace(a,b,15);
+y = fi(x);
+qtrap15 = trapz(x,y);
+
+<span class="comment">% Aproximacion con la formula de los trapecios con 30 puntos</span>
+x = linspace(a,b,30);
+y = fi(x);
+qtrap30 = trapz(x,y);
+
+<span class="comment">% Aproximacion con la formula de los trapecios con 100 puntos</span>
+x = linspace(a,b,100);
+y = fi(x);
+qtrap100 = trapz(x,y);
+
+<span class="comment">% Aproximacion con la formula de los trapecios con 1000 puntos</span>
+x = linspace(a,b,1000);
+y = fi(x);
+qtrap1000 = trapz(x,y);
+
+
+fprintf(<span class="string">'\n\n'</span>)
+fprintf(<span class="string">' Valor exacto (Formula de Barrow): %22.16f \n'</span>, qexacto)
+fprintf(<span class="string">' Valor calculado con integral    : %22.16f \n'</span>, qaprox)
+fprintf(<span class="string">' Valor con trapz con 5 puntos    : %22.16f \n'</span>, qtrap5)
+fprintf(<span class="string">' Valor con trapz con 15 puntos   : %22.16f \n'</span>, qtrap15)
+fprintf(<span class="string">' Valor con trapz con 30 puntos   : %22.16f \n'</span>, qtrap30)
+fprintf(<span class="string">' Valor con trapz con 100 puntos  : %22.16f \n'</span>, qtrap100)
+fprintf(<span class="string">' Valor con trapz con 1000 puntos : %22.16f \n'</span>, qtrap1000)
+</pre>
+
+<pre class="codeoutput">
+
+ Valor exacto (Formula de Barrow):     4.3094653869973749 
+ Valor calculado con integral    :     4.3094653869969157 
+ Valor con trapz con 5 puntos    :     4.6501585336580726 
+ Valor con trapz con 15 puntos   :     4.3098363646262285 
+ Valor con trapz con 30 puntos   :     4.3091366547197669 
+ Valor con trapz con 100 puntos  :     4.3094370149724615 
+ Valor con trapz con 1000 puntos :     4.3094651083423594 
+</pre>
+
+
+<h2>Ejercicio 5.4<a name="5"></a></h2>
+<pre class="codeinput">
+<span class="comment">%  Calcular el promedio integral de la funcion discreta almacenada en el</span>
+<span class="comment">%  fichero discreta1.txt</span>
+<span class="comment">%  Fila 1 : abscisas (se suponen ordenadas en orden creciente)</span>
+<span class="comment">%  Fila 2 : ordenadas</span>
+
+<span class="comment">% Lectura del fichero</span>
+M = load(<span class="string">'discreta1.txt'</span>);
+
+<span class="comment">% Recuperacion de las coordenadas</span>
+x = M(1, :);
+y = M(2, :);
+
+<span class="comment">% Grafica de la funcion (solo por curiosidad)</span>
+plot(x,y)
+
+<span class="comment">% Calculo de la integral</span>
+q = trapz(x, y);
+
+<span class="comment">% Calculo del promedio</span>
+a = x(1);
+b = x(end);
+long = b-a;
+fprom = q/long;
+
+<span class="comment">% Impresion de resultados</span>
+fprintf(<span class="string">'\n\n'</span>)
+fprintf(<span class="string">' Promedio integral de discreta1  : %22.16f \n\n'</span>, fprom)
+</pre>
+
+<img vspace="5" hspace="5" src="Ejercicio5_4.png" alt=""> 
+
+<pre class="codeoutput">
+ Promedio integral de discreta1  :     0.1066749679305000 
+</pre>
+
+ 
+  
+<p class="footer">
+<br>
+<a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013a</a>
+<br>
+<a href="http://www.departamento.us.es/edan/">Rosa Echevarr&iacute;a - Dpto. EDAN - Univ. Sevilla</a>
+<br>
+</p>
+
+
+</div>
+
+<!--
+##### SOURCE BEGIN #####
+%% Ejercicio 5.1
+
+% Funcion integrando
+fi = @(x) atan(x+4);
+% Primitiva
+ff = @(x) -log(x.^2+8*x+17)*0.5 + (x+4).*atan(x+4);
+% Intervalo de integracion
+a = -10;
+b = 5;
+
+% Valor exacto
+qexacto = ff(5)-ff(-10);
+
+% Aproximacion numerica
+qaprox = integral( fi, -10, 5);
+
+fprintf('\n\n')
+fprintf(' Valor exacto (Formula de Barrow): %22.16f \n', qexacto)
+fprintf(' Valor aproximado (numericamente): %22.16f \n', qaprox)
+
+
+%% Ejercicio 5.2
+
+function Ejercicio5_2
+%
+%  Dibuja la grafica de la funcion
+%    k REPLACE_WITH_DASH_DASH-> \int_{0.5}^{7} x \sin( 4 \ln(kx) )
+%  para k \in [1, 10]
+%
+k = linspace(1,10);
+vk = zeros(1,100);
+for i = 1:100
+  vk(i) = intfunk(k(i));
+end
+%%
+plot(k, vk, 'r', 'LineWidth', 1.1)
+
+
+% Funciones auxiliares
+
+%
+function [y] = intfunk(k)
+% 
+%  y = \int_{0.5}^7 funk(x,k) dx
+%
+y = integral( @(x) funk(x,k), 0.5, 7);
+
+
+function [y] = funk(x,k)
+%
+%  y = x * sin( 4 * log(k*x) )
+%
+y = x .* sin( 4 * log(k*x) );
+
+
+%%  Ejercicio 5.3
+
+% Funcion integrando
+fi = @(x) atan(x+4);
+% Funcion primitiva
+ff = @(x) -log(x.^2+8*x+17)*0.5 + (x+4).*atan(x+4);
+% Intervalo de integracion
+a = -10;
+b = 5;
+
+% Valor exacto
+qexacto = ff(5)-ff(-10);
+
+% Aproximacion numerica con integral
+qaprox = integral( fi, -10, 5);
+
+% Aproximacion con la formula de los trapecios con 5 puntos
+x = linspace(a,b,5);
+y = fi(x);
+qtrap5 = trapz(x,y);
+
+% Aproximacion con la formula de los trapecios con 15 puntos
+x = linspace(a,b,15);
+y = fi(x);
+qtrap15 = trapz(x,y);
+
+% Aproximacion con la formula de los trapecios con 30 puntos
+x = linspace(a,b,30);
+y = fi(x);
+qtrap30 = trapz(x,y);
+
+% Aproximacion con la formula de los trapecios con 100 puntos
+x = linspace(a,b,100);
+y = fi(x);
+qtrap100 = trapz(x,y);
+
+% Aproximacion con la formula de los trapecios con 1000 puntos
+x = linspace(a,b,1000);
+y = fi(x);
+qtrap1000 = trapz(x,y);
+
+
+fprintf('\n\n')
+fprintf(' Valor exacto (Formula de Barrow): %22.16f \n', qexacto)
+fprintf(' Valor calculado con integral    : %22.16f \n', qaprox)
+fprintf(' Valor con trapz con 5 puntos    : %22.16f \n', qtrap5)
+fprintf(' Valor con trapz con 15 puntos   : %22.16f \n', qtrap15)
+fprintf(' Valor con trapz con 30 puntos   : %22.16f \n', qtrap30)
+fprintf(' Valor con trapz con 100 puntos  : %22.16f \n', qtrap100)
+fprintf(' Valor con trapz con 1000 puntos : %22.16f \n', qtrap1000)
+
+
+%% Ejercicio 5.4
+
+%  Calcular el promedio integral de la funcion discreta almacenada en el
+%  fichero discreta1.txt
+%  Fila 1 : abscisas (se suponen ordenadas en orden creciente)
+%  Fila 2 : ordenadas
+
+% Lectura del fichero
+M = load('discreta1.txt');
+
+% Recuperacion de la coordenadas
+x = M(1, :);
+y = M(2, :);
+
+% Grafica de la funcion (solo por curiosidad)
+plot(x,y)
+
+% Calculo de la integral
+q = trapz(x, y);
+
+% Calculo del promedio
+a = x(1);
+b = x(end);
+long = b-a;
+fprom = q/long;
+
+% Impresion de resultados
+fprintf('\n\n')
+fprintf(' Promedio integral de discreta1  : %22.16f \n\n', fprom)
+
+
+##### SOURCE END #####
+--></body></html>
